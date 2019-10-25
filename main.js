@@ -180,6 +180,7 @@ displayNext = () => {
     const result  = validateForm();
     if (result === ""){
         getNextQuestion(parseInt(qId)+1);
+        document.getElementById("previous").style.color = "#bd5d38";
     }
     else{
         return result;
@@ -196,7 +197,6 @@ displayPrevious = () => {
     }
     else if (result === ""){
         getNextQuestion(questionIndex);
-        document.getElementById("previous").style.color = "red";
     }
     else {
             return result;

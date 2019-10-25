@@ -27,12 +27,12 @@ class QuestionSet2 {
     }
 }
 
-var question1  = new QuestionSet1(1, "What is the time", "", "hshshs",  "8am");
-var question2  = new QuestionSet1(2, "What is the time 2", "", "hshshs",  "8am");
-var question3  = new QuestionSet1(3, "What is the time 3", "", "hshshs",  "8am");
-var question4  = new QuestionSet1(4, "What is the time 4", "", "hshshs",  "8am");
-var question5  = new QuestionSet1(5, "What is the time 5", "", "hshshs",  "8am");
-var question6  = new QuestionSet1(6, "What is the time 6", "", "hshshs",  "8am");
+var question1  = new QuestionSet1(1, "What is the time", "", "No response 1",  "Yes response 1");
+var question2  = new QuestionSet1(2, "What is the time 2", "", "No response 2",  "Yes response 1");
+var question3  = new QuestionSet1(3, "What is the time 3", "", "No response 3",  "Yes response 1");
+var question4  = new QuestionSet1(4, "What is the time 4", "", "No response 4",  "Yes response 1");
+var question5  = new QuestionSet1(5, "What is the time 5", "", "No response 5",  "Yes response 1");
+var question6  = new QuestionSet1(6, "What is the time 6", "", "No response 6",  "Yes response 1");
 
 questionGroup1 = [question1, question2, question3, question4, question5, question6];
 
@@ -141,20 +141,20 @@ checkAnswer = () => {
     var response = document.getElementsByName("choices");
     responseValue = getCheckedRadioValue(response);
     res = document.getElementById("res");
-    
+
     if (responseValue === undefined) {
         res.innerHTML = "You have to make a selection";
     }
     else{
         for (var i in questionGroup1){
             if (questionGroup1[i].question === question) {
-                if(responseValue === "Yes"){
-                    questionGroup1[i].answer = responseValue;
-                    getNextQuestion(parseInt(qId)+1);
+                if(responseValue === "No"){
+                    res.innerHTML = questionGroup1[i].noResponse;
+                    
                  }
                  else {
-                     res.innerHTML = questionGroup1[i].noResponse;
-                     
+                    questionGroup1[i].answer = responseValue;
+                    getNextQuestion(parseInt(qId)+1);
                  }
              }
          }
@@ -180,7 +180,6 @@ displayPrevious = () => {
 }
 
 getFormResponse = (val1, val2) => {
-
      const highest = Object.values(val1)[0];
      const secondHighest  = Object.values(val2)[0];
      response1 =  responses[highest];

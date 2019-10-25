@@ -129,19 +129,20 @@ createQuestionEelement = (index) => {
     // the += appends to the data we started on the line above
     test.innerHTML += "<input type='radio' name='choices' value='Yes' required /> Yes <br>";
     test.innerHTML += "<input type='radio' name='choices' value='No' required /> No <br><br>";
-    test.innerHTML += "<button class='btn btn-info' onclick='checkAnswer()'>Submit Answer</button>";
+    test.innerHTML += "<button id='btnsubmit' class='btn btn-info' onclick='checkAnswer()'>Submit Answer</button>";
     test.innerHTML += "</form>";
 }
 
-
+let buttonclicked = false;
 checkAnswer = () => {
+    buttonclicked = true;
     var question, response; 
     question = document.getElementById("ques").innerHTML;
     var qId = document.getElementById("ques").getAttribute("target");
     var response = document.getElementsByName("choices");
     responseValue = getCheckedRadioValue(response);
     res = document.getElementById("res");
-
+  
     if (responseValue === undefined) {
         res.innerHTML = "You have to make a selection";
     }
@@ -162,20 +163,46 @@ checkAnswer = () => {
 
 }
 
+validateForm = () => {
+
+    let result = "";
+    if (buttonclicked === false) {
+        result = document.getElementById("res").innerHTML = "You need to submit your selection";
+    }
+    if (document.myForm.choices.value === ""){
+       result = document.getElementById("res").innerHTML = "You need to make a selection first";
+    }
+    return result;
+}
+
 displayNext = () => {
     var qId = document.getElementById("ques").getAttribute("target");
-    getNextQuestion(parseInt(qId)+1);
+    const result  = validateForm();
+    if (result === ""){
+        getNextQuestion(parseInt(qId)+1);
+    }
+    else{
+        return result;
+    }
+    
 }
 
 displayPrevious = () => {
     var qId = document.getElementById("ques").getAttribute("target");
     questionIndex = parseInt(qId)-1;
+    const result  = validateForm();
     if (questionIndex < 1){
       document.getElementById("previous").style.color = "#cccccc";
     }
-    else{
+    else if (result === ""){
         getNextQuestion(questionIndex);
+        document.getElementById("previous").style.color = "red";
     }
+    else {
+            return result;
+        }
+       
+    
     
 }
 

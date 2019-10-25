@@ -140,20 +140,24 @@ checkAnswer = () => {
     var qId = document.getElementById("ques").getAttribute("target");
     var response = document.getElementsByName("choices");
     responseValue = getCheckedRadioValue(response);
-
-    for (var i in questionGroup1){
-       if (questionGroup1[i].question === question) {
-           if(responseValue === "Yes"){
-               questionGroup1[i].answer = responseValue;
-               getNextQuestion(parseInt(qId)+1);
-            }
-            else if (responseValue === "No") {
-                document.getElementById("res").innerHTML = questionGroup1[i].noResponse;
-            }
-            else{
-                document.getElementById("res").innerHTML = "<label>You have to make a selection</label>";
-            }
-        }
+    res = document.getElementById("res");
+    
+    if (responseValue === undefined) {
+        res.innerHTML = "You have to make a selection";
+    }
+    else{
+        for (var i in questionGroup1){
+            if (questionGroup1[i].question === question) {
+                if(responseValue === "Yes"){
+                    questionGroup1[i].answer = responseValue;
+                    getNextQuestion(parseInt(qId)+1);
+                 }
+                 else {
+                     res.innerHTML = questionGroup1[i].noResponse;
+                     
+                 }
+             }
+         }
     }
 
 }

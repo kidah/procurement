@@ -1,11 +1,12 @@
 
 class  QuestionSet1 {
-    constructor(id, question, answer, noResponse, yesResponse) {
+    constructor(id, question, answer, noResponse, yesResponse, step) {
         this.id = id;
         this.question = question;
         this.answer = answer;
         this.noResponse = noResponse;
         this.yesResponse = yesResponse;
+        this.step = step;
     }
     getYesResponse(){
         return this.yesResponse;
@@ -26,25 +27,168 @@ class QuestionSet2 {
         return this.response;
     }
 }
+// prepare business case is a step - q2
+// identify project needs (q1, q2), Prepare business case (q3, q4), Set project budget(q5), Identify risks and constraints, Prepare final project brief, Formulatee procurement strategy
+// if no to q3, skip q4,
+// comments 
+// q6 contains checklist not yes/no - (9) on submission - Cost Overrun, Public Libaility, Project Delay, Source of funds, Design changes,  Poor design, Buildability, HSE and Poor Brief
+// other comments for q6 : 
+// Develop risk register, consider early contractor involvement, Development comprehensive roles and responsibility matrix, 
+// q7 -(Is this a one-off project? if yes, "Set benchmark", if no, "Use framework contract")
+// general comments in q7(for both yes/no): Establish BIM implementation requirement, Consider using smart contract, Open project bank account, Set key performance indicators, Develop value Management Plan)
+// selecting the procurement strategy 
 
-var question1  = new QuestionSet1(1, "What is the time", "", "No response 1",  "Yes response 1");
-var question2  = new QuestionSet1(2, "What is the time 2", "", "No response 2",  "Yes response 1");
-var question3  = new QuestionSet1(3, "What is the time 3", "", "No response 3",  "Yes response 1");
-var question4  = new QuestionSet1(4, "What is the time 4", "", "No response 4",  "Yes response 1");
-var question5  = new QuestionSet1(5, "What is the time 5", "", "No response 5",  "Yes response 1");
-var question6  = new QuestionSet1(6, "What is the time 6", "", "No response 6",  "Yes response 1");
+var q6options = {
+    "Cost Overrun" : "Consider cost overruns in your risk register",
+    "Public Libaility": "Include public liability in your risk register", 
+    "Project Delay": "Include project delay in your risk register", 
+    "Source of funds": "Include source of funds in your risk register",
+    "Design changes": "Include design changes in your risk register",
+    "Poor design": "Include poor design in your risk register", 
+    "Buildability": "Consider buidability in your risk register",
+    "HSE": "Consider Health and safety in your risk register",
+    "Poor Brief": "Consider poor brief when preparing your risk register"
+};
 
-questionGroup1 = [question1, question2, question3, question4, question5, question6];
+var question1  = new QuestionSet1(1, "Do you procure for construction regularly?", "", "Consider using open tendering, Appoint professional adviser",  "Consider using negotiated or selective tendering", "Identify project need");
+var question2  = new QuestionSet1(2, "Is it a complex and large project?", "", "",  "Have initial appointment for specialties, Consider using milestone development, time boxing or phase development", "Identify project need");
+var question3  = new QuestionSet1(3, "Have you done this kind of project before?", "", "", "", "Prepare business case");
+var question4  = new QuestionSet1(4, "Did the procurement route work?", "", "",  "Improve procurement route and reapply, Consider using 'Serial Tender' if its a series of similar project with existing master bill of quantities", "Prepare business case");
+var question5  = new QuestionSet1(5, "Is the project fund readily availalable?", "", "Consider other sources of funds including joint venture, partnering, capital loan, stocks or bonds",  "", "Set project budget");
+var question6  = new QuestionSet1(6, "Identify project risks and constraints", "", "Develop risk register, consider early contractor involvement, Development comprehensive roles and responsibility matrix",  "Develop risk register, consider early contractor involvement, Development comprehensive roles and responsibility matrix", "Risk Management Plan");
+var question7  = new QuestionSet1(7, "Is this a one-off project?", "", " Set benchmark, Establish BIM implementation requirement, Consider using smart contract, Open project bank account, Set key performance indicators, Develop value Management Plan",  "Use framework contract, Establish BIM implementation requirement, Consider using smart contract, Open project bank account, Set key performance indicators, Develop value Management Plan", "Supply Chain Managament");
 
-quest1 = new QuestionSet2(1, "What stupid question", "");
-quest2 = new QuestionSet2(2, "What is the silly question 2", "");
-quest3 = new QuestionSet2(2, "What is the silly question 3", "");
-quest4 = new QuestionSet2(2, "What is the silly question 4", "");
-quest5 = new QuestionSet2(2, "What is the silly question 5", "");
-quest6 = new QuestionSet2(2, "What is the silly question 6", "");
-quest7 = new QuestionSet2(2, "What is the silly question 7", "");
+questionGroup1 = [question1, question2, question3, question4, question5, question6, question7];
 
-questionGroup2 = [quest1, quest2, quest2, quest3, quest4, quest5, quest6, quest7];
+// options are a ranking 1-5  5 highest, 1 is lowest
+//question -  question : dictionaryy(ratings: proute) 
+// Traditional procurement (TP), Design and Build (DB), Management Contracting (MC), Patnering (P), New Procurement Models (Cost-led, Two-stage open book and Integrated project insurance) - (NPM)
+// comment for q7 - (0-50000(1) , 50-25000(2), 250000-1m(3), 1m-10m(4), above 10m(5) )
+quest1 = new QuestionSet2(1, "Cost certainity", {"5": "NPM", "4": "DB", "3": "TP", "2": "P", "1": "MC"});
+quest2 = new QuestionSet2(2, "Sustainability in design and material", {"5": "NPM", "4": "DB", "3": "P", "2": "MC", "1": "TP"});
+quest3 = new QuestionSet2(3, "Stakeholders collaboration", {"5": "NPM", "4": "P", "3": "DB", "2": "MC", "1": "TP"});
+quest4 = new QuestionSet2(4, "Timely completion", {"5": "MC", "4": "DB", "3": "NPM", "2": "P", "1": "TP"});
+quest5 = new QuestionSet2(5, "Ease of construction", {"5": "P", "4": "MC", "3": "NPM", "2": "DB", "1": "TP"});
+quest6 = new QuestionSet2(6, "Design quality and aesthetics", {"5": "P", "4": "MC", "3": "TP", "2": "NPM", "1": "DB"});
+quest7 = new QuestionSet2(7, "Size of project", {"5": "NPM", "4": "DB", "3": "P", "2": "MC", "1": "TP"});
+quest8 = new QuestionSet2(8, "Minimized health and safety issues", {"5": "NPM", "4": "DB", "3": "P", "2": "MC", "1": "TP"});
+quest9 = new QuestionSet2(9, "Budget flexibility", {"5": "P", "4": "MC", "3": "TP", "2": "DB", "1": "NPM"});
+quest10 = new QuestionSet2(10, "Level of supply chain integration", {"5": "NPM", "4": "P", "3": "DB", "2": "MC", "1": "TP"});
+quest11 = new QuestionSet2(11, "Minimising dispute among stakeholders", {"5": "NPM", "4": "P", "3": "DB", "2": "MC", "1": "TP"});
+quest12 = new QuestionSet2(12, "Competitive price tendering", {"5": "NPM", "4": "TP", "3": "MC", "2": "P", "1": "DB"});
+quest13 = new QuestionSet2(13, "Continous improvement", {"5": "NPM", "4": "P", "3": "DB", "2": "MC", "1": "TP"});
+quest14 = new QuestionSet2(14, "Risk avoidance", {"5": "MC", "4": "P", "3": "NPM", "2": "TP", "1": "DB"});
+quest15 = new QuestionSet2(15, "Specified whole-life performance", {"5": "P", "4": "MC", "3": "NPM", "2": "DB", "1": "TP"});
+quest16 = new QuestionSet2(16, "Level of innovation", {"5": "NPM", "4": "P", "3": "DB", "2": "MC", "1": "DB"});
+
+
+
+// pr q2 responses or recommendations
+/* TP
+Comments/Recommnedation
+Open tendering is key  to evaluate contractors capability 
+Consider offering early completion incentive to minimise the weakness of this procurement route
+Consider subscribing for third-party insurance to cover client risk
+Appoint expert project supervisor or representative
+Consider using design-led prime contracting
+Agree on retention fee for latent defect
+
+
+Reasons for recommending PR
+This procurement route is recommended because it ensures high accuracy of cost certainty, design quality by experts, budget flexibility and competitve pricing
+
+Recommended forms of contracting
+NEC3, TSC and PSC
+*/
+
+
+/* DB
+Comments/Recommendation
+Consider using selective tendering based on established relationships
+Establish designer selection criteria
+Establish framework for contious  involvement
+Consider using operate and maintain agreement
+Consider using novation
+
+Reasons for recommending PR
+This procurement choice is recommended because it ensures cost certainty to a signficant extent, sustainability, early completion, consideration of safety during design and control on disputes. 
+
+Recommended forms of contracting
+NEC3, PSC, ECC, SSC
+*/
+
+/* MC
+Comments/Recommendation
+Establish expert appointment criteria
+Consider using construction manager appointment
+Consider using design and manage option
+
+Reasons for recommending PR
+This procurement choice is recommended because of high risk avoidance for clients, ensures early completion due to expert engagement and excellence  for complex projects and when high design quality is desired
+
+Recommended forms of contracting
+NEC, PSC, ECC, ECS
+*/
+
+/* P
+Comments/Recommendation
+Hold regular workshops
+Measure scale of participation of partners
+Develop long-term patnering framework
+Define clear roles and responsibilities
+Setup regular performance review
+Form alternative dispute resolution
+
+Reasons for recommending PR
+This procurement choice is recommended because it is suitable for complex projects with flexible budgets, ensures high collaboration of experts across board, ensures high supply chain integration, contious improvement and dispute resolution.
+
+Recommended forms of contracting
+PPC2000, TPC2005, NEC3:Option X12
+*/
+
+/* NPM
+Comments/Recommendation
+2-stage  open book, Cost-led procurement and Integrated project insurance
+NPM in q1 leads to Cost-led procurement
+NPM in q14 - Integrated project insurance
+NPM in q12 - 2-stage open book
+if in q1, 12 and 14 - select one at random
+
+2-stage  open book
+Use standard framework approach
+Ensure standard specification
+Focus on program level savings
+Use aggregated procurement at supply chain level
+
+Recommended forms of contracting
+JCT CE, TPC2005, PPC2000
+
+Cost-led procurement
+Agree on pain/gain shares
+Appoint BIM manager
+Establish alternative dispute resolution procedure
+Ensure induction and training of contractors
+Ensure cost benchmarking and stakeholder performance review
+
+Recommended forms of contracting
+NEC3, JCT CE
+
+Integrated project insurance
+Enter into no-blame/no-claim agreement
+Use alliance contracting
+
+Recommended forms of contracting
+PPC2000
+
+Reasons for recommending PR
+This procurement choice is recommended because it ensures very high level of cost certainty, sustainability, collaboration, supply chain integration, price competion,
+contious improvement, innovation and health and safety control
+
+
+*/
+
+
+questionGroup2 = [quest1, quest2, quest3, quest4, quest5, quest6, quest7, quest8, quest9, quest10, quest11, quest12, quest13, quest14, quest15, quest16];
 
 
 var responses = {
@@ -61,26 +205,27 @@ loadNextQuestions = () => {
     document.getElementById("counter").innerHTML = "";
     resumecontent = document.getElementById("resume-content");
     resumecontent.classList.remove("mt-5");
-
+    document.getElementById("questionStep").innerHTML = "<h4>Selecting the right procurement strategy</h4> <p>Please rate the following factors based on the level of importance to you on a scale of 1-5 where: <p> <b>5</b> = Very High, <b>4</b> = High, <b>3</b> = Moderate, <b>2</b> = Low, <b>1</b> = Very Low</p> </p><p>Except Question 7 (Size of project) where: </p> <p><b>5</b> = above £10,000,000, <b>4</b> = £1,000,000-10,000,000, <b>3</b> = £250000-1,000,000, <b>2</b> = £50,000-250,000,  <b>1</b> = £0-50000 </p>";
+ 
     for (i=0; i<questionGroup2.length; i++) {
-    
+        let options = questionGroup2[i].response;
         let index = i+1;
         let group = "group" + index;
         test.innerHTML += "<div class='mt-5'>";
-        test.innerHTML +=  "<h3 target="+index+" id='ques'>" +questionGroup2[i].question+ "</h3>";
-        test.innerHTML += "<fieldset id="+group+"> ";
-        test.innerHTML += "<input type='radio' name="+group+" value='Very High' required /> Very High <br>";
-        test.innerHTML += "<input type='radio' name="+group+" value='High' required /> High <br>";
-        test.innerHTML += "<input type='radio' name="+group+" value='Medium' required /> Medium <br>";
-        test.innerHTML += "<input type='radio' name="+group+" value='Low' required /> Low <br>";
-        test.innerHTML += "<input type='radio' name="+group+" value='Very Low' required /> Very Low <br>";
+        test.innerHTML +=  "<label for='question' class='ques' target="+index+" id='ques'>" + questionGroup2[i].id +". " +questionGroup2[i].question+ "</label>";
+        test.innerHTML += "<fieldset id="+group+" class='q2-radios'> ";
+        Object.keys(options).forEach(function(key) {
+            test.innerHTML += "<label class='radio-inline'>";
+            test.innerHTML += "<input type='radio' name="+group+" value="+ options[key]+" required /> "+key + "";
+            test.innerHTML += "</label>";
+        });
         test.innerHTML += "</fieldset>";
         test.innerHTML += "</div>";
       
     }
-    test.innerHTML +=  "<button type='submit' class='mt-5 btn btn-info'>Submit</button>";
-    test.innerHTML +=  "</form>";
-
+    test.innerHTML +=  "<br/><button type='submit' class='mt-5 btn btn-info'>Submit</button>";
+    // test.innerHTML +=  "</form>";
+     
 }
 //console.log(question1,  question2, quest1, quest2);
 
@@ -104,6 +249,20 @@ getCheckedRadioValue = (response) => {
     } 
 }
 
+getCheckboxValue = (response) => {
+    var checkedValues = []; 
+    console.log(response);
+    //var inputElements = document.getElementsByName('q6');
+    for(var i=0; i<response.length; i++){
+        if(response[i].checked){
+            checkedValues.push(response[i].value);
+            //break;
+        }
+    }
+    var res  = checkedValues.toString()
+    return res;
+}
+
 getNextQuestion = (id) => {
 
     if (id > questionGroup1.length ) {
@@ -123,15 +282,38 @@ createQuestionEelement = (index) => {
     }
     var i = index - 1;
     question = questionGroup1[i].question;
+
+    var questionStep = document.getElementById("questionStep");
+    questionStep.innerHTML = "Step "+ index+ ": " + questionGroup1[i].step;
     test = document.getElementById("questions");
-    test.innerHTML = "<form>";
-    test.innerHTML = "<h3 target="+index+" id='ques'>" +question+ "</h3>";
-    // the += appends to the data we started on the line above
-    test.innerHTML += "<input type='radio' name='choices' value='Yes' required /> Yes <br>";
-    test.innerHTML += "<input type='radio' name='choices' value='No' required /> No <br><br>";
-    test.innerHTML += "<button id='btnsubmit' class='btn btn-info' onclick='checkAnswer()'>Submit Answer</button>";
-    test.innerHTML += "</form>";
+    if (i==5) {
+        test.innerHTML = "<form>";
+        test.innerHTML += "<h3 target="+index+" id='ques'>" +question+ "</h3>";
+        test.innerHTML += "<div class='checkbox'><label><input type='checkbox' name='choices' value='Cost overrun'> Cost overrun</label></div>";
+        test.innerHTML += "<div class='checkbox'><label><input type='checkbox' name='choices' value='Public liability'> Public liability</label></div>";
+        test.innerHTML += "<div class='checkbox'><label><input type='checkbox' name='choices' value='Project delay'> Project delay</label></div>";
+        test.innerHTML += "<div class='checkbox'><label><input type='checkbox' name='choices' value='Source of funds'> Source of funds</label></div>";
+        test.innerHTML += "<div class='checkbox'><label><input type='checkbox' name='choices' value='Design changes'> Design changes</label></div>";
+        test.innerHTML += "<div class='checkbox'><label><input type='checkbox' name='choices' value='Poor design'> Poor design</label></div>";
+        test.innerHTML += "<div class='checkbox'><label><input type='checkbox' name='choices' value='Buidability'> Buidability</label></div>";
+        test.innerHTML += "<div class='checkbox'><label><input type='checkbox' name='choices' value='HSE'> HSE</label></div>";
+        test.innerHTML += "<div class='checkbox'><label><input type='checkbox' name='choices' value='Poor brief'> Poor brief</label></div>";
+        test.innerHTML += "<button id='btnsubmit' class='btn btn-info' onclick='checkAnswer()'>Submit Answer</button>";
+        test.innerHTML += "</form>";
+    }
+    else {
+        test.innerHTML = "<form>";
+        test.innerHTML = "<h3 target="+index+" id='ques'>" +question+ "</h3>";
+        // the += appends to the data we started on the line above
+        test.innerHTML += "<input type='radio' name='choices' value='Yes' required /> Yes <br>";
+        test.innerHTML += "<input type='radio' name='choices' value='No' required /> No <br><br>";
+        test.innerHTML += "<button id='btnsubmit' class='btn btn-info' onclick='checkAnswer()'>Submit Answer</button>";
+        test.innerHTML += "</form>";
+    }
+    
 }
+
+
 
 let buttonclicked = false;
 checkAnswer = () => {
@@ -140,28 +322,37 @@ checkAnswer = () => {
     question = document.getElementById("ques").innerHTML;
     var qId = document.getElementById("ques").getAttribute("target");
     var response = document.getElementsByName("choices");
-    responseValue = getCheckedRadioValue(response);
+
+    if (parseInt(qId) == 6) {
+        responseValue = getCheckboxValue(response);
+    }
+    else {
+        responseValue = getCheckedRadioValue(response);
+    }
+
     res = document.getElementById("res");
   
     if (responseValue === undefined) {
         res.innerHTML = "You have to make a selection";
     }
-    else{
+    else {
         for (var i in questionGroup1){
             if (questionGroup1[i].question === question) {
-                if(responseValue === "No"){
-                    res.innerHTML = questionGroup1[i].noResponse;
-                    
-                 }
-                 else {
                     questionGroup1[i].answer = responseValue;
-                    getNextQuestion(parseInt(qId)+1);
-                 }
-             }
+                    if (questionGroup1[i].id == 3 & questionGroup1[i].answer == 'No'){
+                        getNextQuestion(parseInt(qId)+2);
+                    }
+                    else{
+                        getNextQuestion(parseInt(qId)+1);
+                    }
+                    
+                    
+            }
          }
     }
 
 }
+
 
 validateForm = () => {
 
@@ -221,7 +412,7 @@ getResults = (values) => {
     Object.keys(values).forEach(function(key) {
         selections.push(values[key]);
     });
-    
+    // console.log(selections);
    // count all the categories and the times they appear
    const result = {};
    for (let i = 0; i < selections.length; i++) {
@@ -236,7 +427,7 @@ getResults = (values) => {
    items.sort(function(first, second) {
     return second[1] - first[1];
    });
-
+    console.log(items)
    // get the corresponding response for the highest values
    getFormResponse(items[0], items[1]);
 

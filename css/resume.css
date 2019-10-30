@@ -193,4 +193,34 @@ a:hover, a:focus, a:active {
 
 .resume-content {
   padding-top: 5rem!important;
+  width: 90%;
+}
+
+.radio-inline {
+  margin-right: 50px;
+}
+
+
+fieldset {
+  overflow: hidden
+}
+
+.q2-radio {
+  float: left;
+  clear: none;
+}
+
+label.ques {
+  float: left;
+  clear: none;
+  display: block;
+  padding: 2px 1em 0 0;
+  min-width: 500px;
+}
+
+input[type=radio],
+input.radio {
+  /* float: left; */
+  clear: none;
+  margin: 2px 0 0 2px;
 }

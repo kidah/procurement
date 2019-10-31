@@ -27,6 +27,15 @@ class QuestionSet2 {
         return this.response;
     }
 }
+
+class  StrategyRecommnedation {
+    constructor(title, recommendation, reasons, contract) {
+        this.title = title;
+        this.recommendation =  recommendation;
+        this.reasons = reasons;
+        this.contract = contract;
+    }
+}
 // prepare business case is a step - q2
 // identify project needs (q1, q2), Prepare business case (q3, q4), Set project budget(q5), Identify risks and constraints, Prepare final project brief, Formulatee procurement strategy
 // if no to q3, skip q4,
@@ -39,15 +48,15 @@ class QuestionSet2 {
 // selecting the procurement strategy 
 
 var q6options = {
-    "Cost Overrun" : "Consider cost overruns in your risk register",
-    "Public Libaility": "Include public liability in your risk register", 
-    "Project Delay": "Include project delay in your risk register", 
+    "Cost overrun" : "Consider cost overruns in your risk register",
+    "Public liability": "Include public liability in your risk register", 
+    "Project delay": "Include project delay in your risk register", 
     "Source of funds": "Include source of funds in your risk register",
     "Design changes": "Include design changes in your risk register",
     "Poor design": "Include poor design in your risk register", 
     "Buildability": "Consider buidability in your risk register",
     "HSE": "Consider Health and safety in your risk register",
-    "Poor Brief": "Consider poor brief when preparing your risk register"
+    "Poor brief": "Consider poor brief when preparing your risk register"
 };
 
 var question1  = new QuestionSet1(1, "Do you procure for construction regularly?", "", "Consider using open tendering, Appoint professional adviser",  "Consider using negotiated or selective tendering", "Identify project need");
@@ -82,7 +91,46 @@ quest15 = new QuestionSet2(15, "Specified whole-life performance", {"5": "P", "4
 quest16 = new QuestionSet2(16, "Level of innovation", {"5": "NPM", "4": "P", "3": "DB", "2": "MC", "1": "DB"});
 
 
+let TP  = new StrategyRecommnedation("Traditional procurement", 
+          "Open tendering is key  to evaluate contractors capability, Consider offering early completion incentive to minimise the weakness of this procurement route, Consider subscribing for third-party insurance to cover client risk, Appoint expert project supervisor or representative, Consider using design-led prime contracting, Agree on retention fee for latent defect",
+          "This procurement route is recommended because it ensures high accuracy of cost certainty, design quality by experts, budget flexibility and competitve pricing",
+          "NEC3, TSC and PSC");
 
+let DB =  new StrategyRecommnedation("Design and Build", 
+          "Consider using selective tendering based on established relationships, Establish designer selection criteria, Establish framework for contious  involvement, Consider using operate and maintain agreement, Consider using novation",
+          "This procurement choice is recommended because it ensures cost certainty to a signficant extent, sustainability, early completion, consideration of safety during design and control on disputes.",
+          "NEC3, PSC, ECC, SSC");
+
+let  MC = new StrategyRecommnedation ("Management Contracting", "Establish expert appointment criteria, Consider using construction manager appointment, Consider using design and manage option",
+          "This procurement choice is recommended because of high risk avoidance for clients, ensures early completion due to expert engagement and excellence  for complex projects and when high design quality is desired",
+          "NEC, PSC, ECC, ECS");
+
+let P = new StrategyRecommnedation ("Patnering", "Hold regular workshops, Measure scale of participation of partners, Develop long-term patnering framework, Define clear roles and responsibilities, Setup regular performance review, Form alternative dispute resolution",
+        "This procurement choice is recommended because it is suitable for complex projects with flexible budgets, ensures high collaboration of experts across board, ensures high supply chain integration, contious improvement and dispute resolution.",
+        "PPC2000, TPC2005, NEC3:Option X12"
+        );
+
+let NPM2SOB = new StrategyRecommnedation ("2-stage  open book", "Use standard framework approach, Ensure standard specification, Focus on program level savings, Use aggregated procurement at supply chain level",
+              "This procurement choice is recommended because it ensures very high level of cost certainty, sustainability, collaboration, supply chain integration, price competion, contious improvement, innovation and health and safety control",
+              "JCT CE, TPC2005, PPC2000");
+
+let NPMCP = new StrategyRecommnedation("Cost-led procurement", "Agree on pain/gain shares, Appoint BIM manager, Establish alternative dispute resolution procedure, Ensure induction and training of contractors, Ensure cost benchmarking and stakeholder performance review",
+            "This procurement choice is recommended because it ensures very high level of cost certainty, sustainability, collaboration, supply chain integration, price competion, contious improvement, innovation and health and safety control",
+            "NEC3, JCT CE");
+
+let NPMIP = new StrategyRecommnedation("Integrated project insurance", "Enter into no-blame/no-claim agreement, Use alliance contracting",
+            "This procurement choice is recommended because it ensures very high level of cost certainty, sustainability, collaboration, supply chain integration, price competion, contious improvement, innovation and health and safety control",
+            "PPC2000");
+
+recommendations = {
+   "TP": TP,
+   "DB": DB,
+   "MC": MC, 
+   "P": P,
+   "NPM2SOB": NPM2SOB,
+   "NPMCP": NPMCP,
+   "NPMIP": NPMIP
+};
 // pr q2 responses or recommendations
 /* TP
 Comments/Recommnedation
@@ -104,11 +152,7 @@ NEC3, TSC and PSC
 
 /* DB
 Comments/Recommendation
-Consider using selective tendering based on established relationships
-Establish designer selection criteria
-Establish framework for contious  involvement
-Consider using operate and maintain agreement
-Consider using novation
+Consider using selective tendering based on established relationships, Establish designer selection criteria, Establish framework for contious  involvement, Consider using operate and maintain agreement, Consider using novation
 
 Reasons for recommending PR
 This procurement choice is recommended because it ensures cost certainty to a signficant extent, sustainability, early completion, consideration of safety during design and control on disputes. 
@@ -118,10 +162,8 @@ NEC3, PSC, ECC, SSC
 */
 
 /* MC
-Comments/Recommendation
-Establish expert appointment criteria
-Consider using construction manager appointment
-Consider using design and manage option
+Comments/Recommendation, 
+Establish expert appointment criteria, Consider using construction manager appointment, Consider using design and manage option
 
 Reasons for recommending PR
 This procurement choice is recommended because of high risk avoidance for clients, ensures early completion due to expert engagement and excellence  for complex projects and when high design quality is desired
@@ -132,18 +174,13 @@ NEC, PSC, ECC, ECS
 
 /* P
 Comments/Recommendation
-Hold regular workshops
-Measure scale of participation of partners
-Develop long-term patnering framework
-Define clear roles and responsibilities
-Setup regular performance review
-Form alternative dispute resolution
+Hold regular workshops, Measure scale of participation of partners, Develop long-term patnering framework, Define clear roles and responsibilities, Setup regular performance review, Form alternative dispute resolution
 
 Reasons for recommending PR
 This procurement choice is recommended because it is suitable for complex projects with flexible budgets, ensures high collaboration of experts across board, ensures high supply chain integration, contious improvement and dispute resolution.
 
 Recommended forms of contracting
-PPC2000, TPC2005, NEC3:Option X12
+ 
 */
 
 /* NPM
@@ -155,27 +192,19 @@ NPM in q12 - 2-stage open book
 if in q1, 12 and 14 - select one at random
 
 2-stage  open book
-Use standard framework approach
-Ensure standard specification
-Focus on program level savings
-Use aggregated procurement at supply chain level
+Use standard framework approach, Ensure standard specification, Focus on program level savings, Use aggregated procurement at supply chain level
 
 Recommended forms of contracting
 JCT CE, TPC2005, PPC2000
 
 Cost-led procurement
-Agree on pain/gain shares
-Appoint BIM manager
-Establish alternative dispute resolution procedure
-Ensure induction and training of contractors
-Ensure cost benchmarking and stakeholder performance review
+Agree on pain/gain shares, Appoint BIM manager, Establish alternative dispute resolution procedure, Ensure induction and training of contractors, Ensure cost benchmarking and stakeholder performance review
 
 Recommended forms of contracting
 NEC3, JCT CE
 
 Integrated project insurance
-Enter into no-blame/no-claim agreement
-Use alliance contracting
+Enter into no-blame/no-claim agreement, Use alliance contracting
 
 Recommended forms of contracting
 PPC2000
@@ -188,16 +217,11 @@ contious improvement, innovation and health and safety control
 */
 
 
+
 questionGroup2 = [quest1, quest2, quest3, quest4, quest5, quest6, quest7, quest8, quest9, quest10, quest11, quest12, quest13, quest14, quest15, quest16];
 
 
-var responses = {
-   "Very High": "this is the response for very high",
-   "High": "this is the reesponse for high",
-   "Medium": "this is the response for medium",
-   "Low": "this is the response for Low",
-   "Very Low": "this is the response for very low"
-};
+
 
 loadNextQuestions = () => {
     test = document.getElementById("questions2");
@@ -205,8 +229,8 @@ loadNextQuestions = () => {
     document.getElementById("counter").innerHTML = "";
     resumecontent = document.getElementById("resume-content");
     resumecontent.classList.remove("mt-5");
-    document.getElementById("questionStep").innerHTML = "<h4>Selecting the right procurement strategy</h4> <p>Please rate the following factors based on the level of importance to you on a scale of 1-5 where: <p> <b>5</b> = Very High, <b>4</b> = High, <b>3</b> = Moderate, <b>2</b> = Low, <b>1</b> = Very Low</p> </p><p>Except Question 7 (Size of project) where: </p> <p><b>5</b> = above £10,000,000, <b>4</b> = £1,000,000-10,000,000, <b>3</b> = £250000-1,000,000, <b>2</b> = £50,000-250,000,  <b>1</b> = £0-50000 </p>";
- 
+    document.getElementById("questionStep").innerHTML = "<h3>Selecting the right procurement strategy</h3> <p>Please rate the factors below based on the level of importance to you on a scale of 1-5 where: <p> <b>5</b> = Very High, <b>4</b> = High, <b>3</b> = Moderate, <b>2</b> = Low, <b>1</b> = Very Low</p> </p><p>Except Question 7 (Size of project) where: </p> <p><b>5</b> = above £10,000,000, <b>4</b> = £1,000,000-10,000,000, <b>3</b> = £250000-1,000,000, <b>2</b> = £50,000-250,000,  <b>1</b> = £0-50000 </p>";
+    test.innerHTML += "<h4>Selection Criteria</h4>";
     for (i=0; i<questionGroup2.length; i++) {
         let options = questionGroup2[i].response;
         let index = i+1;
@@ -251,7 +275,6 @@ getCheckedRadioValue = (response) => {
 
 getCheckboxValue = (response) => {
     var checkedValues = []; 
-    console.log(response);
     //var inputElements = document.getElementsByName('q6');
     for(var i=0; i<response.length; i++){
         if(response[i].checked){
@@ -284,7 +307,7 @@ createQuestionEelement = (index) => {
     question = questionGroup1[i].question;
 
     var questionStep = document.getElementById("questionStep");
-    questionStep.innerHTML = "Step "+ index+ ": " + questionGroup1[i].step;
+    questionStep.innerHTML = "Step: " + questionGroup1[i].step;
     test = document.getElementById("questions");
     if (i==5) {
         test.innerHTML = "<form>";
@@ -398,14 +421,46 @@ displayPrevious = () => {
 }
 
 getFormResponse = (val1, val2) => {
+    document.getElementById("questionStep").innerHTML = "";
+   // recommnedations1 = getQuestionSet1Response();
+     var rec = getQuestionSet1Response();
      const highest = Object.values(val1)[0];
      const secondHighest  = Object.values(val2)[0];
-     response1 =  responses[highest];
-     response2 = responses[secondHighest];
+     response1 =  recommendations[highest];
+     response2 = recommendations[secondHighest];
      res = document.getElementById("questions2");
-     res.innerHTML = "<h3>Our recommendation </h3> <div>" + responses[highest] +"</div><br/><div>"+ responses[secondHighest] + "</div><br/><br/>";
-     res.innerHTML += "<button class='btn btn-info' onclick='location.reload()'>Start Again</button>"
+     res.innerHTML = "<h3>Results</h3> <div><p>Based on your responses, here are the two recommended procurement routes </p>";
+     res.innerHTML +=  "<div> <h5>1. "+ response1.title +"</h5> <p><b>Recommendation: </b>"+ response1.recommendation+ "</p><p><b>Reason for this recommendation: </b> "+ response1.reasons+"</p><p><b>Recommended Contract Types: </b>"+ response1.contract+"</p></div><br/>";
+     res.innerHTML += "<div> <h5>2. "+ response2.title +"</h5> <p><b>Recommendation: </b>"+ response2.recommendation+ "</p><p><b>Reason for this recommendation: </b> "+ response2.reasons+"</p><p><b>Recommended Contract Types: </b>"+ response2.contract+"</p></div><br/>";
+     res.innerHTML += "<div><h5>Other Recommendations</h5><p>"+ rec +"</p></div>";
+     res.innerHTML += "<button class='btn btn-info' onclick='location.reload()'>Start Again</button>";
 }
+
+
+getQuestionSet1Response = () => {
+    let responses = "<ul>";
+
+    for(i=0; i<questionGroup1.length; i++) {
+   
+        if (questionGroup1[i].answer == "Yes" && questionGroup1[i].yesResponse != "") {
+            responses += "<li>"  + questionGroup1[i].yesResponse + "</li>";
+        }
+        if (questionGroup1[i].answer == "No" && questionGroup1[i].noResponse != "") {
+            responses += "<li>" + questionGroup1[i].noResponse + "</li> ";
+        }
+        if (questionGroup1[i].id  == 6) {
+            res = questionGroup1[i].answer; 
+            items= res.split(",");
+            for (var a=0; a<items.length; a++) {
+                responses += "<li>"  + q6options[items[a]] + "</li>";
+            }
+        }
+    }
+    responses +=  "</ul>";
+
+    return responses;
+}
+
 
 getResults = (values) => {
     var selections = [];
@@ -427,7 +482,6 @@ getResults = (values) => {
    items.sort(function(first, second) {
     return second[1] - first[1];
    });
-    console.log(items)
    // get the corresponding response for the highest values
    getFormResponse(items[0], items[1]);
 

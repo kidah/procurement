@@ -318,7 +318,7 @@ createQuestionEelement = (index) => {
         test.innerHTML += "<div class='checkbox'><label><input type='checkbox' name='choices' value='Source of funds'> Source of funds</label></div>";
         test.innerHTML += "<div class='checkbox'><label><input type='checkbox' name='choices' value='Design changes'> Design changes</label></div>";
         test.innerHTML += "<div class='checkbox'><label><input type='checkbox' name='choices' value='Poor design'> Poor design</label></div>";
-        test.innerHTML += "<div class='checkbox'><label><input type='checkbox' name='choices' value='Buidability'> Buidability</label></div>";
+        test.innerHTML += "<div class='checkbox'><label><input type='checkbox' name='choices' value='Buildability'> Buildability</label></div>";
         test.innerHTML += "<div class='checkbox'><label><input type='checkbox' name='choices' value='HSE'> HSE</label></div>";
         test.innerHTML += "<div class='checkbox'><label><input type='checkbox' name='choices' value='Poor brief'> Poor brief</label></div>";
         test.innerHTML += "<button id='btnsubmit' class='btn btn-info' onclick='checkAnswer()'>Submit Answer</button>";

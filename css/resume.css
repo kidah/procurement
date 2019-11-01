@@ -224,3 +224,8 @@ input.radio {
   clear: none;
   margin: 2px 0 0 2px;
 }
+
+li.responses {
+  line-height: 1.5em;
+  padding-bottom: 15px;
+}

@@ -1,0 +1,27 @@
+{
+    "name": "Procurement Selection Tool",
+    "description": "Offsite Construction Procurement Selection Tool",
+    "homepage": "https://sofiatabioye.github.io/procurement/",
+    "keywords": [
+        "expert system",
+        "procurement",
+        "server",
+        "client",
+        "browser"
+    ],
+    "author": "Sofiat Abioye, Taofeek Akinosho <tboy2015@gmail.com>",
+    "contributors": [],
+    "dependencies": {
+        "json-rules-engine": "latest",
+        "express": "^4.17.1",
+        "http": "^0.0.1-security",
+        "path": "^0.12.7",
+        "body-parser": "^1.19.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/sofiatabioye/procurement"
+    },
+    "main": "underscore.js",
+    "version": "1.1.6"
+}
